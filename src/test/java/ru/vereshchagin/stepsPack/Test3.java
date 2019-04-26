@@ -6,11 +6,9 @@ import org.junit.Test;
 
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
-import static ru.vereshchagin.stepsPack.EmailCreatePage.createEmail;
 import static ru.vereshchagin.stepsPack.LoginForm.login;
-import static ru.vereshchagin.stepsPack.MailBoxMainPage.createEmailButton;
+import static ru.vereshchagin.stepsPack.MailBoxMainPage.*;
 import static ru.vereshchagin.stepsPack.OpenBrowser.openWindow;
-import static ru.vereshchagin.stepsPack.TestData.userLogin;
 
 public class Test3 {
     @BeforeClass
@@ -21,8 +19,15 @@ public class Test3 {
 
     @Test
     public void loginTry() {
-        createEmailButton();
-        createEmail(userLogin, "Тема сообщения", "Это тестовое сообщение");
+        MailBoxMainPage mailBoxMainPage = page(MailBoxMainPage.class);
+//        Переходим в папку Отправленные
+        mailMenuNavigate(sentFolder);
+//        Переходим в папку Черновики
+        mailMenuNavigate(draftFolder);
+//        Переходим в папку Корзина
+        mailMenuNavigate(garbageFolder);
+//        Переходим в папку Входящие
+        mailMenuNavigate(inputFolder);
     }
 
 
